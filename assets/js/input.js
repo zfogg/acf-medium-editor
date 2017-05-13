@@ -10,13 +10,12 @@ var acf_medium_editor_timeout = false;
 	    name: "colorPicker",
 	    action: "applyForeColor",
 	    aria: "color picker",
-	    contentDefault: "<span class='editor-color-picker'>Text Color<span>",
+	    contentDefault: "<span class='editor-color-picker'>Color Picker<span>",
 
 	    init: function() {
 		this.button = this.document.createElement('button');
 		this.button.classList.add('medium-editor-action');
-		this.button.innerHTML = '<b>Bla bla</b>';
-
+		this.button.innerHTML = '<b title="Color Picker" style="color: #1A2;"><i class="dashicons dashicons-admin-appearance"></i></b>';
 		initPicker(this.button);
 	    }
 	});
