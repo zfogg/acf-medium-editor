@@ -20,9 +20,6 @@ var acf_medium_editor_timeout = false;
 	    }
 	});
 
-	var pickerExtension = new ColorPickerExtension();
-
-
 	function setColor(color) {
 	    pickerExtension.base.importSelection(this.selectionState);
 	    pickerExtension.document.execCommand("styleWithCSS", false, true);
@@ -57,6 +54,158 @@ var acf_medium_editor_timeout = false;
 		]
 	    });
 	}
+	
+	'use strict';
+
+	/**
+	 * CompanyFontSizes
+	 * A simple extension to allow the selection of font size directly in the action toolbar
+	 */
+	var CompanyFontSizes = MediumEditor.Extension.extend({
+	  name: 'companySizes',
+
+	  /**
+	   * Stores all the possible pickable font size
+	   */
+	  fontSizes: ['', '1', '2', '3', '4', '5', '6', '7'],
+
+	  /**
+	   * @inheritDoc
+	   */
+	  constructor: function constructor(options) {
+	    MediumEditor.Extension.call(this, options);
+	  },
+
+
+	  /**
+	   * @inheritDoc
+	   */
+	  init: function init() {
+	    var _this = this;
+
+	    this.buttonContainer = this.document.createElement('div');
+	    this.buttonContainer.classList.add('medium-editor-button-container');
+
+	    // Font Name Form (div)
+	    var form = this.document.createElement('form');
+	    form.classList.add('medium-editor-fontsize-container');
+	    form.classList.add('medium-editor-form-container');
+	    form.id = 'medium-editor-toolbar-form-fontsize-' + this.getEditorId();
+	    this.buttonContainer.appendChild(form);
+
+	    var select = this.document.createElement('select');
+	    select.classList.add('medium-editor-form-select');
+	    form.appendChild(select);
+
+	    // Add font sizes
+	    this.fontSizes.forEach(function (item) {
+	      var option = _this.document.createElement('option');
+	      option.innerHTML = item;
+	      option.value = item;
+	      select.appendChild(option);
+	    });
+
+	    // Attach editor events to keep status updates
+	    this.attachToEditables();
+
+	    // Handle typing in the text box
+	    this.on(select, 'change', function (event) {
+	      return _this.handleFontSizeChange(event);
+	    });
+	  },
+	  getSelect: function getSelect() {
+	    return this.getButton().querySelector('select.medium-editor-form-select');
+	  },
+
+
+	  /**
+	   * @inheritDoc
+	   */
+	  attachToEditables: function attachToEditables() {
+	    var _this2 = this;
+
+	    this.subscribe('positionedToolbar', function (event) {
+	      return _this2.handlePositionedToolbar(event);
+	    });
+	  },
+
+
+	  /**
+	   * @inheritDoc
+	   */
+	  deattachFromEditables: function deattachFromEditables() {
+	    var _this3 = this;
+
+	    this.base.unsubscribe('positionedToolbar', function (event) {
+	      return _this3.handlePositionedToolbar(event);
+	    });
+	  },
+
+
+	  /**
+	   * @inheritDoc
+	   */
+	  handlePositionedToolbar: function handlePositionedToolbar(event) {
+	    // get the current selection when toolbar appear so we can retrieve the font used
+	    // by this selection
+	    var fontSize = this.document.queryCommandValue('fontSize') + '';
+	    this.updateSelection(fontSize);
+	  },
+
+
+	  /**
+	   * Update the selection of the combo box
+	   * @param value the item to be selected
+	   */
+	  updateSelection: function updateSelection(value) {
+	    var select = this.getSelect();
+	    select.value = value || '';
+	  },
+
+
+	  /**
+	   * @inheritDoc
+	   */
+	  handleFontSizeChange: function handleFontSizeChange(event) {
+	    var size = this.getSelect().value;
+	    if (size === '') {
+	      this.clearFontSize();
+	    } else {
+	      this.execAction('fontSize', { value: size });
+	    }
+	  },
+
+
+	  /**
+	   * @inheritDoc
+	   */
+	  clearFontSize: function clearFontSize() {
+	    MediumEditor.selection.getSelectedElements(this.document).forEach(function (el) {
+	      if (el.nodeName.toLowerCase() === 'font' && el.hasAttribute('size')) {
+		el.removeAttribute('size');
+	      }
+	    });
+	  },
+
+
+	  /**
+	   * @inheritDoc
+	   */
+	  getButton: function getButton() {
+	    return this.buttonContainer;
+	  },
+
+
+	  /**
+	   * @inheritDoc
+	   */
+	  destroy: function destroy() {
+	    this.deattachFromEditables();
+	  }
+	});
+
+	MediumEditor.extensions.companysizes = CompanyFontSizes;
+	
 	
 	function acf_get_medium_editor_selector($el, $selector) {
 		// because of repeaters, flex fields and clones
@@ -150,7 +299,8 @@ var acf_medium_editor_timeout = false;
 		var $placeholder = $data.data('placeholder');
 		$options =  JSON.parse(decodeURIComponent($data.data('options')));
 		
-		$custom_buttons['colorPicker'] = pickerExtension;
+		$custom_buttons['colorPicker'] = new ColorPickerExtension();
+		$custom_buttons['fontSizes']   = new CompanyFontSizes();
 
 		var $object = {
 			toolbar: {
