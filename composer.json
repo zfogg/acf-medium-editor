@@ -3,7 +3,7 @@
   "name": "Hube2/acf-medium-editor",
   "description": "medium-editor field for acf",
   "type": "wordpress-plugin",
-  "version": "2.4.4",
+  "version": "2.4.5",
   "keywords": ["wordpress", "wp", "acf", "medium-editor", "wordpres-plugin", "advanced-custom-fields"],
   "homepage": "https://github.com/Hube2/acf-medium-editor",
   "license": "GPLv2.0+",
