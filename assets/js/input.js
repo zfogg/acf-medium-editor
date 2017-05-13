@@ -151,7 +151,7 @@ var acf_medium_editor_timeout = false;
 		var $placeholder = $data.data('placeholder');
 		$options =  JSON.parse(decodeURIComponent($data.data('options')));
 		
-		$customButtons['colorPicker'] = pickerExtension;
+		$custom_buttons['colorPicker'] = pickerExtension;
 
 		var $object = {
 			toolbar: {
