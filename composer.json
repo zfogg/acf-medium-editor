@@ -1,21 +1,25 @@
 
 {
-  "name": "Hube2/acf-medium-editor",
+  "name": "zfogg/acf-medium-editor",
   "description": "medium-editor field for acf",
   "type": "wordpress-plugin",
-  "version": "2.4.7",
+  "version": "2.5.0",
   "keywords": ["wordpress", "wp", "acf", "medium-editor", "wordpres-plugin", "advanced-custom-fields"],
-  "homepage": "https://github.com/Hube2/acf-medium-editor",
+  "homepage": "https://github.com/zfogg/acf-medium-editor",
   "license": "GPLv2.0+",
   "authors": [
     {
       "name": "Hube2",
       "homepage": "https://github.com/Hube2",
       "role": "Developer"
+    }, {
+      "name": "zfogg",
+      "homepage": "https://github.com/zfogg",
+      "role": "Developer"
     }
   ],
   "require": {
-    "php": ">=5.3.2",
+    "php": ">=7.1.5",
     "composer/installers": "~1.0"
   }
 }
