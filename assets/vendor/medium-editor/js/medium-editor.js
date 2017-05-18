@@ -4778,9 +4778,9 @@ MediumEditor.extensions = {};
         action: 'fontName',
         aria: 'change font name',
         contentDefault: '&#xB1;', // ±
-        contentFA: '<i class="fa fa-font"></i>',
+        contentFA: '<i class="dashicons dashicons-editor-spellcheck"></i>',
 
-        fonts: ['', 'Arial', 'Verdana', 'Times New Roman'],
+        fonts: ['', 'Arial', 'Verdana', 'Times New Roman', 'Calibri'],
 
         init: function () {
             MediumEditor.extensions.form.prototype.init.apply(this, arguments);
