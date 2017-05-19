@@ -754,7 +754,7 @@
 						$value = trim(preg_replace('/\s+/s', ' ', $value));
 					}
 				}
-				$value = wp_kses_post($value);
+				//$value = wp_kses_post($value); // FIXME - @zfogg
 				return $value;				
 			}
 			
