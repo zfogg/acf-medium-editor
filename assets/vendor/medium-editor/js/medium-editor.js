@@ -4780,7 +4780,7 @@ MediumEditor.extensions = {};
         contentDefault: '&#xB1;', // ±
         contentFA: '<i class="dashicons dashicons-editor-spellcheck"></i>',
 
-        fonts: ['', 'Arial', 'Verdana', 'Times New Roman', 'Calibri'],
+        fonts: ['', 'Arial', 'Verdana', 'Times New Roman', 'Calibri', 'Avenir', 'Helvetica Neue', ],
 
         init: function () {
             MediumEditor.extensions.form.prototype.init.apply(this, arguments);
