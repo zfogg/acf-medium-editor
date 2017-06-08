@@ -5057,12 +5057,14 @@ MediumEditor.extensions = {};
 
             // Add font size slider
             input.setAttribute('type', 'number');
-            input.setAttribute('min', '1');
-            input.setAttribute('max', '64');
+            input.setAttribute('min', '0');
+            input.setAttribute('max', '100');
             input.className = 'medium-editor-toolbar-input';
             form.appendChild(input);
 
             // Handle typing in the textbox
+            console.log(input);
+            console.log(this);
             this.on(input, 'change', this.handleSliderChange.bind(this));
 
             // Add save buton
@@ -5104,11 +5106,8 @@ MediumEditor.extensions = {};
 
         handleSliderChange: function () {
             var size = this.getInput().value;
-            if (size === '4') {
-                this.clearFontSize();
-            } else {
-                this.execAction('fontSize', { value: size });
-            }
+            console.log(size);
+            this.execAction('fontSize', { value: size });
         },
 
         handleFormClick: function (event) {
