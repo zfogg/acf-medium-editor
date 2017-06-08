@@ -3,7 +3,7 @@
   "name": "zfogg/acf-medium-editor",
   "description": "medium-editor field for acf",
   "type": "wordpress-plugin",
-  "version": "2.5.6",
+  "version": "3.0.0",
   "keywords": ["wordpress", "wp", "acf", "medium-editor", "wordpres-plugin", "advanced-custom-fields"],
   "homepage": "https://github.com/zfogg/acf-medium-editor",
   "license": "GPLv2.0+",

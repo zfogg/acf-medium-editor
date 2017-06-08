@@ -6104,11 +6104,21 @@ MediumEditor.extensions = {};
             }
         },
 
-        hideToolbar: function () {
-            if (this.isDisplayed()) {
+        // https://github.com/yabwe/medium-editor/issues/523
+        hideToolbar: function() {
+            if (this.isDisplayed() && this.isColorPickerHidden()) {  //added here
                 this.getToolbarElement().classList.remove('medium-editor-toolbar-active');
                 this.trigger('hideToolbar', {}, this.base.getFocusedElement());
             }
+        },
+        isColorPickerHidden: function(){
+            var picker = document.querySelector('.sp-container');
+            return picker? this.hasClass(picker, 'sp-hidden') : true;
+        },
+        //This method might not be necessary. It just implements the equivalent to jQuery hasClass. 
+        //but I didn't spent time to check if medium-editor already has an equivalent. 
+        hasClass: function(ele, cls){
+            return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
         },
 
         isToolbarDefaultActionsDisplayed: function () {
