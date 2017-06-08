@@ -5056,15 +5056,13 @@ MediumEditor.extensions = {};
             this.on(form, 'click', this.handleFormClick.bind(this));
 
             // Add font size slider
-            input.setAttribute('type', 'number');
+            input.setAttribute('type', 'range');
             input.setAttribute('min', '1');
             input.setAttribute('max', '7');
             input.className = 'medium-editor-toolbar-input';
             form.appendChild(input);
 
             // Handle typing in the textbox
-            console.log(input);
-            console.log(this);
             this.on(input, 'change', this.handleSliderChange.bind(this));
 
             // Add save buton
@@ -5106,9 +5104,6 @@ MediumEditor.extensions = {};
 
         handleSliderChange: function () {
             var size = this.getInput().value;
-            debug;
-            console.log(size);
-            console.log(this);
             this.execAction('fontSize', size);
         },
 
