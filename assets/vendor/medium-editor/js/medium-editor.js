@@ -5057,8 +5057,8 @@ MediumEditor.extensions = {};
 
             // Add font size slider
             input.setAttribute('type', 'number');
-            input.setAttribute('min', '0');
-            input.setAttribute('max', '100');
+            input.setAttribute('min', '1');
+            input.setAttribute('max', '7');
             input.className = 'medium-editor-toolbar-input';
             form.appendChild(input);
 
@@ -5106,8 +5106,10 @@ MediumEditor.extensions = {};
 
         handleSliderChange: function () {
             var size = this.getInput().value;
+            debug;
             console.log(size);
-            this.execAction('fontSize', { value: size });
+            console.log(this);
+            this.execAction('fontSize', size);
         },
 
         handleFormClick: function (event) {
