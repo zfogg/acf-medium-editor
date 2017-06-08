@@ -11,12 +11,12 @@ var acf_medium_editor_timeout = false;
       aria: "color picker",
       contentDefault: "<span class='editor-color-picker'>Color Picker<span>",
 
-      init: function() {
-    this.button = this.document.createElement('button');
-    this.button.classList.add('medium-editor-action');
-    this.button.innerHTML = '<b title="Color Picker" style="color: #1A2;"><i class="dashicons dashicons-art"></i></b>';
-    initPicker(this.button);
-      }
+    init: function() {
+      this.button = this.document.createElement('button');
+      this.button.classList.add('medium-editor-action');
+      this.button.innerHTML = '<b title="Color Picker" style="color: #1A2;"><i class="dashicons dashicons-art"></i></b>';
+      initPicker(this.button);
+    }
   });
 
   var pickerExtension = new ColorPickerExtension();
@@ -158,6 +158,7 @@ var acf_medium_editor_timeout = false;
     });
 
     $custom_buttons.colorPicker = pickerExtension;
+    console.log('$custom_buttons', $custom_buttons);
 
     var $object = {
       toolbar: {
